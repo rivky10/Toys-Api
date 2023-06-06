@@ -1,26 +1,27 @@
+*{
+  font-family: 'Geologica', sans-serif;
+}
+
 main{
     background-color: whitesmoke;
   }
   main .topPic {
-    min-height: 300px;
+    min-height: 350px;
     border-radius: 32px;
-    background-image: url(pexels-tim-mossholder-3643925.jpg);
-    font-family: "Pattaya", sans-serif;
+    background-image: url('img/back.jpg');
     box-shadow: 0px 10px 22px 0px #000000;
-    background-position: center;
+    background-position: center top;
     background-size: cover;
   }
   
     .bigDomain{
       font-size: 1.8em;
-      font-family: "Pattaya", sans-serif;
   
     }
     
   nav .myScale{
     display: inline-block;
     letter-spacing: 1px;
-    font-family: sans-serif;
     margin: 8px;
     text-decoration: none;
     color: black;
@@ -34,8 +35,6 @@ main{
   }
   
   .text1{
-    font-family: 'Gloria Hallelujah', cursive;
-    font-family: 'Playfair Display', serif;
     font-size: 1.3em;
   }
   
@@ -47,4 +46,12 @@ main{
     transform: scale(1.2);
     color: blue;
   }
+
+  .gradient-text {
+    background-image: linear-gradient(90deg, rgba(29,253,43,1) 23%, rgba(252,69,76,1) 76%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+}
   

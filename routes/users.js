@@ -81,11 +81,17 @@ router.put("/:editId", auth, async (req, res) => {
   try {
       let editId = req.params.editId;
       let data;
+      if (req.body.password) {
+        req.body.password = await bcrypt.hash(req.body.password, 10);
+      }
       if (req.tokenData.role == "admin") {
-          data = await UserModel.updateOne({ _id: editId }, req.body)
+        data = await UserModel.updateOne({ _id: editId }, req.body)
+      }
+      else if (editId == req.tokenData._id) {
+        data = await UserModel.updateOne({ _id:req.tokenData._id }, req.body)
       }
       else {
-          data = await UserModel.updateOne({ _id: editId, user_id: req.tokenData._id }, req.body)
+        return res.status(401).json({ msg: "Sorry, you do not have permission to update" });
       }
       res.json(data);
   }
@@ -102,8 +108,11 @@ router.delete("/:delId", auth, async (req, res) => {
       if (req.tokenData.role == "admin") {
           data = await UserModel.deleteOne({ _id: delId })
       }
+      else if(delId == req.tokenData._id) {
+          data = await UserModel.deleteOne({_id: req.tokenData._id })
+      }
       else {
-          data = await UserModel.deleteOne({ _id: delId, user_id: req.tokenData._id })
+        return res.status(401).json({ msg: "Sorry, you do not have permission to update" });
       }
       res.json(data);
   }
